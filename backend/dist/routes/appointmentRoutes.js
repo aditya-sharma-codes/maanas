@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const appointmentController_1 = require("../controllers/appointmentController");
+const auth_1 = require("../middleware/auth");
+const validators_1 = require("../validators");
+const router = (0, express_1.Router)();
+router.get('/counselors', appointmentController_1.fetchCounselors);
+router.post('/', (0, auth_1.validateRequest)(validators_1.bookAppointmentSchema), appointmentController_1.createAppointment);
+router.get('/', appointmentController_1.fetchAppointments);
+exports.default = router;

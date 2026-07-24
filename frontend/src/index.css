@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+ 
+@layer base {
+  :root {
+    --background: 210 33% 98%;
+    --foreground: 200 9% 11%;
+    --border: 200 11% 45%;
+    --input: 200 11% 45%;
+    --ring: 191 100% 24%;
+    --radius: 1.5rem;
+  }
+ 
+  .dark {
+    --background: 200 6% 19%;
+    --foreground: 210 33% 98%;
+    --border: 200 11% 45%;
+    --input: 200 11% 45%;
+    --ring: 191 100% 70%;
+  }
+}
+ 
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    background-image: linear-gradient(135deg, #F7F9FB 0%, #E0F7FA 50%, #E8F5F3 100%);
+    background-attachment: fixed;
+    transition: background-image 1s ease-in-out;
+  }
+}
+
+@layer utilities {
+  .glass-card {
+    @apply bg-white/60 backdrop-blur-xl border border-white/40 shadow-[0_20px_40px_rgba(47,107,135,0.08)] rounded-xl;
+  }
+  .glass-button-primary {
+    @apply bg-gradient-to-r from-accent to-primary text-white shadow-[0_8px_16px_rgba(0,104,122,0.2)] rounded-full hover:shadow-[0_12px_24px_rgba(0,104,122,0.3)] transition-all;
+  }
+  .glass-button-ghost {
+    @apply bg-transparent border-[1.5px] border-white/50 backdrop-blur-md rounded-full hover:bg-white/20 transition-all;
+  }
+}

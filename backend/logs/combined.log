@@ -1,0 +1,47 @@
+2026-07-24 20:22:33 [info]: Server is running on port 5000
+2026-07-24 20:29:42 [info]: Server is running on port 5000
+2026-07-24 20:34:11 [info]: Server is running on port 5000
+2026-07-24 20:47:18 [error]: 
+Invalid `prisma.counselor.findMany()` invocation in
+F:\Maanas\backend\src\services\appointmentService.ts:4:27
+
+  1 import { prisma } from '../lib/prisma';
+  2 
+  3 export const getAvailableCounselors = async () => {
+→ 4   return prisma.counselor.findMany(
+Can't reach database server at `localhost:5432`
+
+Please make sure your database server is running at `localhost:5432`. - GET /api/appointments/counselors {"stack":"PrismaClientInitializationError: \nInvalid `prisma.counselor.findMany()` invocation in\nF:\\Maanas\\backend\\src\\services\\appointmentService.ts:4:27\n\n  1 import { prisma } from '../lib/prisma';\n  2 \n  3 export const getAvailableCounselors = async () => {\n→ 4   return prisma.counselor.findMany(\nCan't reach database server at `localhost:5432`\n\nPlease make sure your database server is running at `localhost:5432`.\n    at $n.handleRequestError (F:\\Maanas\\node_modules\\@prisma\\client\\runtime\\library.js:121:7615)\n    at $n.handleAndLogRequestError (F:\\Maanas\\node_modules\\@prisma\\client\\runtime\\library.js:121:6623)\n    at $n.request (F:\\Maanas\\node_modules\\@prisma\\client\\runtime\\library.js:121:6307)\n    at l (F:\\Maanas\\node_modules\\@prisma\\client\\runtime\\library.js:130:9633)\n    at fetchCounselors (F:\\Maanas\\backend\\src\\controllers\\appointmentController.ts:7:24)","body":{},"params":{},"query":{}}
+2026-07-24 20:47:22 [error]: 
+Invalid `prisma.counselor.findMany()` invocation in
+F:\Maanas\backend\src\services\appointmentService.ts:4:27
+
+  1 import { prisma } from '../lib/prisma';
+  2 
+  3 export const getAvailableCounselors = async () => {
+→ 4   return prisma.counselor.findMany(
+Can't reach database server at `localhost:5432`
+
+Please make sure your database server is running at `localhost:5432`. - GET /api/appointments/counselors {"stack":"PrismaClientInitializationError: \nInvalid `prisma.counselor.findMany()` invocation in\nF:\\Maanas\\backend\\src\\services\\appointmentService.ts:4:27\n\n  1 import { prisma } from '../lib/prisma';\n  2 \n  3 export const getAvailableCounselors = async () => {\n→ 4   return prisma.counselor.findMany(\nCan't reach database server at `localhost:5432`\n\nPlease make sure your database server is running at `localhost:5432`.\n    at $n.handleRequestError (F:\\Maanas\\node_modules\\@prisma\\client\\runtime\\library.js:121:7615)\n    at $n.handleAndLogRequestError (F:\\Maanas\\node_modules\\@prisma\\client\\runtime\\library.js:121:6623)\n    at $n.request (F:\\Maanas\\node_modules\\@prisma\\client\\runtime\\library.js:121:6307)\n    at l (F:\\Maanas\\node_modules\\@prisma\\client\\runtime\\library.js:130:9633)\n    at fetchCounselors (F:\\Maanas\\backend\\src\\controllers\\appointmentController.ts:7:24)","body":{},"params":{},"query":{}}
+2026-07-24 20:57:31 [error]: 
+Invalid `prisma.counselor.findMany()` invocation in
+F:\Maanas\backend\src\services\appointmentService.ts:4:27
+
+  1 import { prisma } from '../lib/prisma';
+  2 
+  3 export const getAvailableCounselors = async () => {
+→ 4   return prisma.counselor.findMany(
+Can't reach database server at `localhost:5432`
+
+Please make sure your database server is running at `localhost:5432`. - GET /api/appointments/counselors {"stack":"PrismaClientInitializationError: \nInvalid `prisma.counselor.findMany()` invocation in\nF:\\Maanas\\backend\\src\\services\\appointmentService.ts:4:27\n\n  1 import { prisma } from '../lib/prisma';\n  2 \n  3 export const getAvailableCounselors = async () => {\n→ 4   return prisma.counselor.findMany(\nCan't reach database server at `localhost:5432`\n\nPlease make sure your database server is running at `localhost:5432`.\n    at $n.handleRequestError (F:\\Maanas\\node_modules\\@prisma\\client\\runtime\\library.js:121:7615)\n    at $n.handleAndLogRequestError (F:\\Maanas\\node_modules\\@prisma\\client\\runtime\\library.js:121:6623)\n    at $n.request (F:\\Maanas\\node_modules\\@prisma\\client\\runtime\\library.js:121:6307)\n    at l (F:\\Maanas\\node_modules\\@prisma\\client\\runtime\\library.js:130:9633)\n    at fetchCounselors (F:\\Maanas\\backend\\src\\controllers\\appointmentController.ts:7:24)","body":{},"params":{},"query":{}}
+2026-07-24 20:57:35 [error]: 
+Invalid `prisma.counselor.findMany()` invocation in
+F:\Maanas\backend\src\services\appointmentService.ts:4:27
+
+  1 import { prisma } from '../lib/prisma';
+  2 
+  3 export const getAvailableCounselors = async () => {
+→ 4   return prisma.counselor.findMany(
+Can't reach database server at `localhost:5432`
+
+Please make sure your database server is running at `localhost:5432`. - GET /api/appointments/counselors {"stack":"PrismaClientInitializationError: \nInvalid `prisma.counselor.findMany()` invocation in\nF:\\Maanas\\backend\\src\\services\\appointmentService.ts:4:27\n\n  1 import { prisma } from '../lib/prisma';\n  2 \n  3 export const getAvailableCounselors = async () => {\n→ 4   return prisma.counselor.findMany(\nCan't reach database server at `localhost:5432`\n\nPlease make sure your database server is running at `localhost:5432`.\n    at $n.handleRequestError (F:\\Maanas\\node_modules\\@prisma\\client\\runtime\\library.js:121:7615)\n    at $n.handleAndLogRequestError (F:\\Maanas\\node_modules\\@prisma\\client\\runtime\\library.js:121:6623)\n    at $n.request (F:\\Maanas\\node_modules\\@prisma\\client\\runtime\\library.js:121:6307)\n    at l (F:\\Maanas\\node_modules\\@prisma\\client\\runtime\\library.js:130:9633)\n    at fetchCounselors (F:\\Maanas\\backend\\src\\controllers\\appointmentController.ts:7:24)","body":{},"params":{},"query":{}}

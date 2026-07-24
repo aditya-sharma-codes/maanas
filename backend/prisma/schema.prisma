@@ -1,0 +1,92 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Institute {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Assessment {
+  id              String   @id @default(cuid())
+  deviceId        String
+  department      String
+  academicYear    String
+  score           Int
+  weatherCategory String
+  timestamp       DateTime @default(now())
+}
+
+model Department {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  createdAt DateTime @default(now())
+}
+
+model AcademicYear {
+  id        String   @id @default(cuid())
+  year      String   @unique
+  createdAt DateTime @default(now())
+}
+
+model Counselor {
+  id           String        @id @default(cuid())
+  name         String
+  email        String        @unique
+  phone        String?
+  available    Boolean       @default(true)
+  appointments Appointment[]
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+}
+
+model Appointment {
+  id          String    @id @default(cuid())
+  counselorId String
+  deviceId    String
+  date        DateTime
+  status      String    @default("PENDING") // PENDING, CONFIRMED, CANCELLED
+  counselor   Counselor @relation(fields: [counselorId], references: [id])
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model AssessmentHistory {
+  id         String   @id @default(cuid())
+  deviceId   String
+  totalScore Int
+  timestamp  DateTime @default(now())
+}
+
+model SupportRequest {
+  id        String   @id @default(cuid())
+  deviceId  String
+  message   String
+  status    String   @default("OPEN")
+  createdAt DateTime @default(now())
+}
+
+model Notification {
+  id        String   @id @default(cuid())
+  message   String
+  type      String
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model WeatherRecommendation {
+  id              String   @id @default(cuid())
+  weatherCategory String   @unique
+  recommendations String[]
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
