@@ -91,7 +91,6 @@ export const Dashboard = () => {
 
   // Generate week timeline
   const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-  const todayIndex = new Date().getDay();
 
   // Create list of 7 days around today
   const timelineDays = Array.from({ length: 7 }).map((_, i) => {
