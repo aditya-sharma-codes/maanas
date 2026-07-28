@@ -1,145 +1,32 @@
 # MANAS: Mental Awareness & Assistance for Student Stress
 
-MANAS is a privacy-first, web-based wellness application designed to help students track their emotional state, access immediate self-care tools, and securely request professional help. It uses an intuitive "weather" metaphor for tracking stress and offers anonymous department-level analytics for institutes.
-
-## Table of Contents
-1. [Architecture Summary](#architecture-summary)
-2. [Folder Structure](#folder-structure)
-3. [Environment Variables](#environment-variables)
-4. [Database Schema](#database-schema)
-5. [API Documentation](#api-documentation)
-6. [Installation & Development Guide](#installation--development-guide)
-7. [Deployment Guide](#deployment-guide)
-
----
-
-## Architecture Summary
-**Frontend**: React, Vite, TypeScript, Tailwind CSS, Zustand (state persistence), Framer Motion (animations), React Router.
-**Backend**: Node.js, Express, TypeScript, Prisma (ORM).
-**Database**: PostgreSQL (Neon Serverless PostgreSQL recommended).
-**Styling**: Pixel-perfect translation of Stitch Design System tokens (Glassmorphism, curated typography).
+Welcome to the MANAS project! MANAS is a privacy-first, wellness application designed to help students track their stress levels, practice mindfulness, and seamlessly connect with campus counselors—all while remaining completely anonymous.
 
 ---
 
 ## Folder Structure
-```text
-f:\Maanas
-├── package.json               # Monorepo task runner (concurrently)
-├── vercel.json                # Vercel deployment configuration
-├── railway.json               # Railway deployment configuration
-├── backend/                   # Express backend (Clean Architecture)
-│   ├── prisma/                # Schema & Seed script
-│   ├── src/
-│   │   ├── controllers/       # Route handlers
-│   │   ├── services/          # Business logic & DB queries
-│   │   ├── routes/            # Express routers
-│   │   ├── middleware/        # JWT auth, Error handling
-│   │   ├── validators/        # Zod request validation schemas
-│   │   └── utils/             # Standardized JSON responses
-│   └── .env
-└── frontend/                  # React + Vite frontend
-    ├── src/
-    │   ├── api/               # Modular Axios clients 
-    │   ├── components/        # Reusable UI (Mascot)
-    │   ├── pages/             # Stitch translated screens
-    │   └── store/             # Zustand persistent store
-    ├── tailwind.config.js     # Stitch token maps
-    └── .env
-```
+
+The project is divided into two main parts: the Frontend (User Interface) and the Backend (Server & Database). Below is a simple breakdown of the major folders.
+
+### Frontend
+- **Components**: Reusable UI elements like buttons, cards, and the mascot.
+- **Pages**: Main screens of the application (e.g., Dashboard, Breathing, Games).
+- **Store**: Manages the local state and data (like the anonymous student ID and wellness streak).
+- **Services**: Contains the core logic for calculating weather states, recommendations, and rewards.
+
+### Backend
+- **Controllers**: Handles the logic for processing incoming requests and generating responses.
+- **Routes**: Defines the URL endpoints (APIs) that the frontend communicates with.
+- **Services**: Contains reusable business logic for database operations.
+- **Prisma**: Holds the database schema and configurations.
+- **Middleware**: Intercepts requests for security checks like verifying authentication tokens.
 
 ---
 
-## Environment Variables
+## Deployment
 
-### Backend (`backend/.env`)
-| Variable | Description | Example |
-|----------|-------------|---------|
-| `PORT` | Backend server port | `3000` |
-| `DATABASE_URL` | PostgreSQL connection string | `postgres://user:pass@ep-x-y.us-east-2.aws.neon.tech/neondb` |
-| `JWT_SECRET` | Secret for signing JWTs | `supersecret_jwt_key_for_manas` |
+The MANAS platform is deployed across modern, cloud-based services to ensure high availability and security. Environment variables are strictly used across all platforms to protect sensitive keys and credentials.
 
-### Frontend (`frontend/.env`)
-| Variable | Description | Example |
-|----------|-------------|---------|
-| `VITE_API_URL` | Base URL for backend APIs | `http://localhost:3000/api` |
-
----
-
-## Database Schema
-- **Institute**: `id`, `name`, `email`, `password`
-- **Assessment**: `id`, `deviceId`, `department`, `academicYear`, `score`, `weatherCategory`, `timestamp`
-- **AssessmentHistory**: `id`, `deviceId`, `totalScore`, `timestamp`
-- **Counselor**: `id`, `name`, `specialty`, `available`
-- **Appointment**: `id`, `deviceId`, `counselorId`, `date`, `status`
-- **WeatherRecommendation**: `id`, `weatherCategory`, `recommendations` (JSON)
-
----
-
-## API Documentation
-
-### Auth Endpoints
-- **POST** `/api/auth/login`
-  - **Body**: `{ "email": "...", "password": "..." }`
-  - **Response**: `{ "success": true, "data": { "token": "...", "user": {...} } }`
-
-### Assessment Endpoints (Anonymous)
-- **POST** `/api/assessments`
-  - **Body**: `{ "deviceId": "...", "department": "...", "academicYear": "...", "score": 10, "weatherCategory": "Cloudy" }`
-  - **Response**: `{ "success": true, "data": { "assessment": {...}, "recommendations": [...] } }`
-
-### Appointment Endpoints (Anonymous)
-- **GET** `/api/appointments/counselors`
-  - **Response**: List of available counselors.
-- **POST** `/api/appointments`
-  - **Body**: `{ "deviceId": "...", "counselorId": "...", "date": "2026-07-24T10:00:00Z" }`
-  - **Response**: Booked appointment status.
-- **GET** `/api/appointments?deviceId=...`
-  - **Response**: List of appointments for that device.
-
-### Dashboard Endpoints (Requires JWT)
-- **GET** `/api/dashboard/stats`
-- **GET** `/api/dashboard/departments`
-
----
-
-## Installation & Development Guide
-
-1. **Install Dependencies** (Root folder):
-   ```bash
-   npm install
-   ```
-2. **Configure Environment Variables**:
-   Copy `.env.example` to `.env` in both `frontend/` and `backend/`. Ensure `DATABASE_URL` in the backend points to a valid PostgreSQL database.
-3. **Database Setup**:
-   ```bash
-   cd backend
-   npx prisma db push
-   npx prisma generate
-   npm run prisma:seed
-   ```
-4. **Run Development Servers** (Root folder):
-   ```bash
-   npm start
-   ```
-   *Frontend runs on http://localhost:5173, Backend on http://localhost:3000.*
-
----
-
-## Deployment Guide
-
-### Database (Neon PostgreSQL)
-1. Create a Neon project.
-2. Copy the connection string.
-3. Add it as `DATABASE_URL` in Railway.
-
-### Backend (Railway)
-1. Connect your GitHub repository to Railway.
-2. Railway will automatically detect the `railway.json` file in the root directory.
-3. Add environment variables: `DATABASE_URL`, `JWT_SECRET`, `PORT` (8080).
-4. Run Prisma deployment commands locally or via Railway build steps to apply the schema.
-
-### Frontend (Vercel)
-1. Import the repository into Vercel.
-2. Vercel will detect the `vercel.json` and automatically configure the frontend build (`cd frontend && npm install && npm run build`).
-3. Add Environment Variable: `VITE_API_URL` pointing to your Railway backend URL (e.g., `https://manas-api.up.railway.app/api`).
-4. Deploy.
+- **Frontend → Vercel**: The user-facing application is hosted on Vercel, providing fast, global content delivery and automatic scaling.
+- **Backend → Railway**: The core server and APIs are deployed on Railway, ensuring reliable processing and seamless integration with the database.
+- **Database → Neon**: We use Neon for serverless PostgreSQL hosting, which offers excellent performance and secure data storage.
