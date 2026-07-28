@@ -55,7 +55,7 @@ export const Assessment = () => {
       setIsSubmitting(true);
       try {
         const totalScore = answers.reduce((a, b) => a + b, 0);
-        let weatherCategory = 'Sunny';
+        let weatherCategory: any = 'Sunny';
         if (totalScore > 20) weatherCategory = 'Stormy';
         else if (totalScore > 12) weatherCategory = 'Cloudy';
         else if (totalScore > 6) weatherCategory = 'Partly Cloudy';

@@ -4,8 +4,16 @@ import { motion } from 'framer-motion';
 import { pageVariants, containerVariants } from '../animations/page';
 import { cardVariants } from '../animations/cards';
 import { buttonVariants } from '../animations/buttons';
+import { useEffect } from 'react';
+import { useAppStore } from '../store/useAppStore';
 
 export const LandingPage = () => {
+  const initializeToken = useAppStore(state => state.initializeToken);
+
+  useEffect(() => {
+    initializeToken();
+  }, [initializeToken]);
+
   return (
     <motion.div 
       variants={pageVariants}
